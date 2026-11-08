@@ -1,0 +1,30 @@
+# When a guide changes, ask computer-science-essentials to re-check the
+# template READMEs, whose shared blocks link into guides/. That repo's
+# sync-readmes workflow runs --verify-links against this repo and opens
+# PRs on the templates if their blocks need updating.
+name: Notify README sync
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - guides/**
+
+# Nothing here uses the job's own token. The dispatch uses DISPATCH_TOKEN,
+# a fine-grained PAT with Contents: read and write on
+# riverside-pirates/computer-science-essentials only.
+permissions: {}
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send guides-changed to computer-science-essentials
+        env:
+          GH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
+          SHA: ${{ github.sha }}
+        run: |
+          gh api --method POST repos/riverside-pirates/computer-science-essentials/dispatches \
+            -f event_type=guides-changed \
+            -f "client_payload[sha]=$SHA" \
+            -f "client_payload[repository]=$GITHUB_REPOSITORY"
