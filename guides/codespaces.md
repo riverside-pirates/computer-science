@@ -42,5 +42,21 @@ during the year. So treat every hour like treasure.
   picture → **Your codespaces** → **⋯** → **Delete**. Sync first!
 - **Keep the default machine size.** A bigger machine burns hours faster.
 
+## 🧹 Set this once: clear out old codespaces
+
+Old codespaces take up space even when they're stopped. Run out of space and
+none of your codespaces will open. Tell GitHub to throw the old ones overboard
+for you.
+
+1. On github.com, click your profile picture → **Settings**.
+2. In the left menu, click **Codespaces**.
+3. Find **Default retention period**. Type `7` and click **Save**.
+
+✅ **Checkpoint:** the box says 7 days.
+
+Now a codespace you haven't opened for 7 days deletes itself. Your work is
+safe as long as you clicked **Sync Changes**. Need it again? Make a new
+codespace.
+
 Codespace won't start? Your work is safe on GitHub as long as you clicked
 **Sync Changes**. Tell your teacher.
